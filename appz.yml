@@ -23,13 +23,13 @@ volumes:
   - claim: oradata-data
     mount: /opt/oracle/oradata
     #mount: /appz/data
-    name: data
+    name: oradata
     size: 5Gi
     mode: ReadWriteOnce
   - claim: dpdump-data
     mount: /opt/oracle/admin/FREE/dpdump
     #mount: /appz/data
-    name: data
+    name: dpdump
     size: 5Gi
     mode: ReadWriteOnce
 properties:
