@@ -1,0 +1,32 @@
+app:
+    name: oracle
+    code: ORACLE
+    notify: srswain@ecloudcontrol.com
+    
+build:
+    version: 23.0
+    env: DEV
+    build_file: none
+    output_files: output/*.zip
+    image_template: oracle-23.0
+    
+deploy:
+    context: sranjan1995/DEV
+    type: statefulset
+    ingress: none
+    replicas: 1
+    port:
+    - 1521
+    - 5500
+    
+volumes:
+  - claim: oracle-data
+    #mount: /opt/oracle/oradata
+    mount: /appz/data
+    name: data
+    size: 5Gi
+    mode: ReadWriteOnce
+properties:
+    ORACLE_DB_USER: 'C##JANAVIDEOPD'
+    ORACLE_DB_PASSWORD: {vault: ORACLE_DB_PASSWORD}
+    revision : 1
