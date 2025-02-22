@@ -20,9 +20,15 @@ deploy:
     - 5500
     
 volumes:
-  - claim: oracle-data
-    #mount: /opt/oracle/oradata
-    mount: /appz/data
+  - claim: oradata-data
+    mount: /opt/oracle/oradata
+    #mount: /appz/data
+    name: data
+    size: 5Gi
+    mode: ReadWriteOnce
+  - claim: dpdump-data
+    mount: /opt/oracle/admin/FREE/dpdump
+    #mount: /appz/data
     name: data
     size: 5Gi
     mode: ReadWriteOnce
